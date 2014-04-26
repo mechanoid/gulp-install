@@ -9,7 +9,7 @@ var through2 = require('through2'),
       'package.json': {cmd: 'npm', args: ['install']}
     };
 
-module.exports = exports = function install () {
+module.exports = exports = function install (basepath) {
   var toRun = [],
       count = 0;
 
@@ -40,7 +40,7 @@ module.exports = exports = function install () {
               gutil.log(err.message, 'Run `' + gutil.colors.yellow(formatCommand(command)) + '` manually');
             }
             done(cb, toRun.length);
-          });
+          }, basepath);
         });
       }
     }
